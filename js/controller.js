@@ -302,7 +302,7 @@ function stepInitialize() {
     if (currentState > 0) {
       if (gameState[currentState]['seconds'] > -1) {
         // time = gameState[currentState]['seconds'] * 1000
-        time = 40 * 60 * 1000 - getDataTime
+        time = getDataTime
         timeFlag = 1
       }
     }
@@ -993,7 +993,8 @@ function handleEventData(data) {
     if(match['p'] == 32) setTimer = false
     if(match['p'] == 0) setTimer = false
     periodlength = match['periodlength']
-    getDataTime = match['timeinfo']['remaining'] * 1000
+    // getDataTime = match['p'] * 40 * 60 * 1000 - match['timeinfo']['remaining'] * 1000
+    getDataTime = match['timeinfo']['played'] * 1000
     setTimer1 = match['timeinfo']['running']
 
     // Team Name Setting
@@ -1070,6 +1071,7 @@ function handleEventData(data) {
     }
     if (match['p'] == 0) {
       setTimer = false
+      setTimer1 = false
       setCenterFrame('Match End', homeScore + ' - ' + awayScore)
     }
   }
