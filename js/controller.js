@@ -9,9 +9,9 @@ var ptime, setTimer, stopTime = 0
 var setTimer1 = true;
 
 var topLeft = 112,
-  topPosition = 108
+  topPosition = 98
 var pitchX = 576,
-  pitchY = 404
+  pitchY = 352
 var w1 = pitchX / 2,
   w2 = 576 / 2,
   hp = pitchY
@@ -1265,9 +1265,9 @@ function min(minArg1, minArg2) {
 function changeScreenSize() {
   screenHeight = window.innerHeight
   screenWidth = window.innerWidth
-  scale = min(screenWidth / 800, screenHeight / 530);
+  scale = min(screenWidth / 800, screenHeight / 462);
 
   document.getElementById('scale').setAttribute('transform', 'scale(' + scale + ')')
   document.getElementById('svg').setAttribute('width', 800 * scale)
-  document.getElementById('svg').setAttribute('height', 530 * scale)
+  document.getElementById('svg').setAttribute('height', 462 * scale)
 }
