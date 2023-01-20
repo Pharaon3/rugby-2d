@@ -191,7 +191,7 @@ function load() {
       handleEventData(data.d);
     }
   };
-  document.getElementById('link').setAttribute('href', '../rugby-2d/index.html?eventId=' + eventId)
+  document.getElementById('link').setAttribute('href', '../rugby-3d/index.html?eventId=' + eventId)
 }
 function tmp(){}
 function bounceBall() {
@@ -1265,9 +1265,9 @@ function min(minArg1, minArg2) {
 function changeScreenSize() {
   screenHeight = window.innerHeight
   screenWidth = window.innerWidth
-  scale = min(screenWidth / 800, screenHeight / 462);
+  scale = min(screenWidth / 800, screenHeight / 530);
 
   document.getElementById('scale').setAttribute('transform', 'scale(' + scale + ')')
   document.getElementById('svg').setAttribute('width', 800 * scale)
-  document.getElementById('svg').setAttribute('height', 462 * scale)
+  document.getElementById('svg').setAttribute('height', 530 * scale)
 }
