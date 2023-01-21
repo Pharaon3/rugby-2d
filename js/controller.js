@@ -107,7 +107,6 @@ function countdown() {
         }
         t += 1 / 101
         ballPosition()
-        drawRect()
         displayState()
         if (x2 == x1 && y2 == y1) {
           bounceBall()
@@ -119,6 +118,7 @@ function countdown() {
           }
         }
         drawTrack()
+        drawRect()
         showState()
       }
 
@@ -195,6 +195,7 @@ function load() {
 }
 function tmp(){}
 function bounceBall() {
+  if(!setTimer)return
   tt = t
   x_1 = mapX(x, y)
   y_1 = ((y * y) / hp + y) / 2
@@ -214,6 +215,7 @@ function bounceBall() {
   document.getElementById('ball_shadow').setAttribute('ry', 5 * tt)
 }
 function ballPosition() {
+  if(!setTimer)return
   x = x1 + (x2 - x1) * t
   y = y1 + (y2 - y1) * t // x is (-0.5, 0.5) in square pitch
   x_1 = mapX(x, y)
@@ -235,6 +237,7 @@ function ballPosition() {
   ys = y_1_1 + (y_1_2 - y_1_1) * t
 }
 function kickBall() {
+  if(!setTimer)return
   document
     .getElementById('ball')
     .setAttribute('x', x_b + w2 - ballRadius / 2 + topLeft)
@@ -257,6 +260,7 @@ function kickBall() {
   }
 }
 function drawTrack() {
+  if(!setTimer)return
   x_l = x_1_1 + (x_1_2 - x_1_1) * t
   y_l = y_1_1 + (y_1_2 - y_1_1) * t
   document.getElementById('ballLine1').setAttribute('x1', lineX[0])
@@ -370,6 +374,7 @@ function stepInitialize() {
   else isGoal = 0;
 }
 function drawRect() {
+  if(!setTimer)return
   rt = t * 2
   if (rt > 1) rt = 1
   if (gameState[currentState]['team'] == 'home') {
@@ -805,8 +810,6 @@ function showState() {
   }
 }
 function remove() {
-  document.getElementById('homeStatePolygon').style.fill = 'url(#none)'
-  document.getElementById('awayStatePolygon').style.fill = 'url(#none)'
   document.getElementById('homeKickPolygon').style.fill = 'url(#none)'
   document.getElementById('awayKickPolygon').style.fill = 'url(#none)'
   document.getElementById('homeStateLabels').style.display = 'none'
@@ -924,6 +927,9 @@ function capitalizeWords(arr) {
   });
 }
 function setCenterFrame(title, content) {
+  resetTrack()
+  document.getElementById('homeStatePolygon').style.fill = 'url(#none)'
+  document.getElementById('awayStatePolygon').style.fill = 'url(#none)'
   document.getElementById('ballState').textContent = ''
   document.getElementById('actionBoard').setAttribute('height', 0)
   document.getElementById('stateBoardLine').setAttribute('stroke-opacity', 0)
@@ -1055,18 +1061,22 @@ function handleEventData(data) {
 
     if (match['p'] == 31) {
       setTimer = false
+      setTimer1 = false
       setCenterFrame('End of 1st Period', homeScore + ' - ' + awayScore)
     }
     if (match['p'] == 32) {
       setTimer = false
+      setTimer1 = false
       setCenterFrame('End of 2nd Period', homeScore + ' - ' + awayScore)
     }
     if (match['p'] == 33) {
       setTimer = false
+      setTimer1 = false
       setCenterFrame('End of 3rd Period', homeScore + ' - ' + awayScore)
     }
     if (match['p'] == 34) {
       setTimer = false
+      setTimer1 = false
       setCenterFrame('End of 4th Period', homeScore + ' - ' + awayScore)
     }
     if (match['p'] == 0) {
