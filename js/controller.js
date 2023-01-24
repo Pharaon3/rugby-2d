@@ -6,7 +6,7 @@ var isLimitedCov = false;
 var updated_uts1 = 0, updated_uts = 0
 var currentTime, matchStartDate;
 var ptime, setTimer, stopTime = 0
-var setTimer1 = true;
+var setTimer1 = false;
 
 var topLeft = 112,
   topPosition = 98
@@ -170,7 +170,7 @@ function load() {
   awayScore = 0
   timeSet = 0;
   isGoal = 0
-
+  getDataTime = 0
   const urlParams = new URLSearchParams(window.location.search);
   const eventId = Number(urlParams.get('eventId'));
 
