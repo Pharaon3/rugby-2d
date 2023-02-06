@@ -2,6 +2,7 @@ var socket;
 
 var currentState = 0;
 var isLimitedCov = false;
+var matchLength, numberOfPeriods;
 
 var updated_uts1 = 0,
   updated_uts = 0;
@@ -1231,6 +1232,8 @@ function handleEventData(data) {
   var match = data["match"];
 
   if (match) {
+    matchLength = match["matchlength"];
+    numberOfPeriods = match["numberofperiods"];
     if (
       match["coverage"]["lmtsupport"] < 3 &&
       match["p"] < 10 &&
@@ -1273,13 +1276,13 @@ function handleEventData(data) {
 
     center_text = capitalizeWords(match["status"]["name"].split(" ")).join(" ");
     document.getElementById("period").textContent = center_text;
-    if (match["status"]["name"] == "Halftime") stopTime = 40 * 60;
+    if (match["status"]["name"] == "Halftime") stopTime = matchLength * 60;
     if (match["status"]["name"] == "Not started") {
       stopTime = 0 * 60;
       document.getElementById("period").textContent = "";
       document.getElementById("time").textContent = "";
     }
-    if (match["status"]["name"] == "Ended") stopTime = 80 * 60;
+    if (match["status"]["name"] == "Ended") stopTime = matchLength * 2 * 60;
 
     // Score Setting
     var result = match["result"];
