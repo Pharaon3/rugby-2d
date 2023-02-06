@@ -719,6 +719,18 @@ function showState() {
         );
       }
     }
+    if (gameState[currentState]["type"] == "conversionevent") {
+      setCenterFrame("Conversion", teamNames[gameState[currentState]["team"]]);
+    }
+    if (gameState[currentState]["type"] == "tryscoredevent") {
+      setCenterFrame("Try", teamNames[gameState[currentState]["team"]]);
+    }
+    if (gameState[currentState]["type"] == "penaltypointsevent") {
+      setCenterFrame(
+        "PENALTY POINTS",
+        teamNames[gameState[currentState]["team"]]
+      );
+    }
     if (gameState[currentState]["type"] == "Replacement") {
       document.getElementById("subsitution").style.display = "block";
       document
