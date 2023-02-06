@@ -722,6 +722,9 @@ function showState() {
         );
       }
     }
+    if (gameState[currentState]["type"] == "lineout") {
+      resetTrack();
+    }
     if (gameState[currentState]["type"] == "conversionevent") {
       resetTrack();
       setCenterFrame("Conversion", teamNames[gameState[currentState]["team"]]);
