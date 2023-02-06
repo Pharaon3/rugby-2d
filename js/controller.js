@@ -126,7 +126,8 @@ function countdown() {
         } else {
           if (
             gameState[currentState]["type"] &&
-            gameState[currentState]["type"] != "newphase"
+            gameState[currentState]["type"] != "newphase" &&
+            gameState[currentState]["type"] != "resetphasecount"
           ) {
             bounceBall();
           } else {
@@ -172,6 +173,8 @@ function countdown() {
           gameState[currentState]["name"];
         if (gameState[currentState]["name"] == "New phase")
           $("#homeState").text("Possession");
+        if (gameState[currentState]["name"] == "Reset phase count")
+          $("#homeState").text("Possession");
       } else if (
         gameState[currentState] &&
         gameState[currentState]["team"] == "away" &&
@@ -180,6 +183,8 @@ function countdown() {
         document.getElementById("awayState").textContent =
           gameState[currentState]["name"];
         if (gameState[currentState]["name"] == "New phase")
+          $("#awayState").text("Possession");
+        if (gameState[currentState]["name"] == "Reset phase count")
           $("#awayState").text("Possession");
       } else if (gameState[currentState] && gameState[currentState]["name"]) {
         document.getElementById("homeStateLabels").style.display = "none";
@@ -679,7 +684,8 @@ function showState() {
 
   if (
     gameState[currentState]["type"] &&
-    gameState[currentState]["type"] != "newphase"
+    gameState[currentState]["type"] != "newphase" &&
+    gameState[currentState]["type"] != "resetphasecount"
   ) {
     remove();
     if (gameState[currentState]["team"]) showAction();
