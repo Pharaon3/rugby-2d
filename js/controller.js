@@ -93,6 +93,7 @@ function countdown() {
         var seconds = Math.floor(
           (matchStartDate - currentDate.getTime()) / 1000
         );
+        seconds = max(seconds, 0);
         var second = seconds % 60;
         var minutes = Math.floor(seconds / 60);
         var minute = minutes % 60;
