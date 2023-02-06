@@ -940,6 +940,7 @@ function showState() {
     }
     if (gameState[currentState]["type"] == "match_ended") {
       setCenterFrame("Match End", homeScore + ":" + awayScore);
+      $('#period').text('Ended')
     }
     if (gameState[currentState]["type"] == "periodstart") {
       //
