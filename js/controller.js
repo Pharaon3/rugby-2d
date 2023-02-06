@@ -1062,7 +1062,7 @@ function handleEventData(data) {
     if (match['p'] == 31) {
       setTimer = false
       setTimer1 = false
-      setCenterFrame('End of 1st Period', homeScore + ' - ' + awayScore)
+      setCenterFrame('half time', homeScore + ' - ' + awayScore)
     }
     if (match['p'] == 32) {
       setTimer = false
