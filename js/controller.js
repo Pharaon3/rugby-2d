@@ -702,6 +702,7 @@ function showState() {
       );
     }
     if (gameState[currentState]["type"] == "goal") {
+      resetTrack();
       setCenterFrame("Goal", teamNames[gameState[currentState]["team"]]);
       if (gameState[currentState]["goaltypeid"] == "29") {
         setCenterFrame(
@@ -720,18 +721,22 @@ function showState() {
       }
     }
     if (gameState[currentState]["type"] == "conversionevent") {
+      resetTrack();
       setCenterFrame("Conversion", teamNames[gameState[currentState]["team"]]);
     }
     if (gameState[currentState]["type"] == "tryscoredevent") {
+      resetTrack();
       setCenterFrame("Try", teamNames[gameState[currentState]["team"]]);
     }
     if (gameState[currentState]["type"] == "penaltypointsevent") {
+      resetTrack();
       setCenterFrame(
         "PENALTY POINTS",
         teamNames[gameState[currentState]["team"]]
       );
     }
     if (gameState[currentState]["type"] == "Replacement") {
+      resetTrack();
       document.getElementById("subsitution").style.display = "block";
       document
         .getElementById("substitutionOut")
