@@ -1170,6 +1170,7 @@ function capitalizeWords(arr) {
 }
 function setCenterFrame(title, content) {
   resetTrack();
+  drawRect();
   document.getElementById("homeStatePolygon").style.fill = "url(#none)";
   document.getElementById("awayStatePolygon").style.fill = "url(#none)";
   document.getElementById("ballState").textContent = "";
