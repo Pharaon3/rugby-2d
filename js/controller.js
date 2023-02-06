@@ -124,7 +124,10 @@ function countdown() {
         if (x2 == x1 && y2 == y1) {
           bounceBall();
         } else {
-          if (gameState[currentState]["type"]) {
+          if (
+            gameState[currentState]["type"] &&
+            gameState[currentState]["type"] != "newphase"
+          ) {
             bounceBall();
           } else {
             kickBall();
@@ -167,6 +170,8 @@ function countdown() {
       ) {
         document.getElementById("homeState").textContent =
           gameState[currentState]["name"];
+        if (gameState[currentState]["name"] == "New phase")
+          $("#homeState").text("Possession");
       } else if (
         gameState[currentState] &&
         gameState[currentState]["team"] == "away" &&
@@ -174,6 +179,8 @@ function countdown() {
       ) {
         document.getElementById("awayState").textContent =
           gameState[currentState]["name"];
+        if (gameState[currentState]["name"] == "New phase")
+          $("#awayState").text("Possession");
       } else if (gameState[currentState] && gameState[currentState]["name"]) {
         document.getElementById("homeStateLabels").style.display = "none";
         document.getElementById("awayStateLabels").style.display = "none";
@@ -670,7 +677,10 @@ function showState() {
   document.getElementById("awayKickPolygon").style.fill = "url(#none)";
   document.getElementById("homeKickPolygon").style.fill = "url(#none)";
 
-  if (gameState[currentState]["type"]) {
+  if (
+    gameState[currentState]["type"] &&
+    gameState[currentState]["type"] != "newphase"
+  ) {
     remove();
     if (gameState[currentState]["team"]) showAction();
     if (gameState[currentState]["name"] == "Yellow card") {
