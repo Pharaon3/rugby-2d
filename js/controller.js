@@ -376,7 +376,7 @@ function stepInitialize() {
     if (gameState[currentState]["X"] > -1) {
       x2 = ((gameState[currentState]["X"] - 50) * w1) / 50;
       y2 = (gameState[currentState]["Y"] * hp) / 100;
-      if (x2 != x1 && y2 != y1) {
+      if (x2 != x1 || y2 != y1) {
         x_1_1 = mapX(x1, y1);
         y_1_1 = mapY(x1, y1);
         x_1_2 = mapX(x2, y2);
