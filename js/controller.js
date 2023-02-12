@@ -312,6 +312,7 @@ function kickBall() {
 }
 function drawTrack() {
   if (!setTimer) return;
+  if (x1 == x2 && y1 == y2) return;
   x_l = x_1_1 + (x_1_2 - x_1_1) * t;
   y_l = y_1_1 + (y_1_2 - y_1_1) * t;
   document.getElementById("ballLine1").setAttribute("x1", lineX[0]);
