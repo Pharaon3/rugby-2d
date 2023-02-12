@@ -351,7 +351,7 @@ function resetTrack() {
   lineY[2] = y_1_1 + topPosition;
   lineY[1] = y_1_1 + topPosition;
   lineY[0] = y_1_1 + topPosition;
-  
+
   $("#ballLine1").attr("x1", inf);
   $("#ballLine1").attr("y1", inf);
   $("#ballLine1").attr("x2", inf);
@@ -752,6 +752,13 @@ function showState() {
     if (gameState[currentState]["type"] == "tryscoredevent") {
       resetTrack();
       setCenterFrame("Try", teamNames[gameState[currentState]["team"]]);
+    }
+    if (gameState[currentState]["type"] == "missedrugbypointsevent") {
+      resetTrack();
+      setCenterFrame(
+        gameState[currentState]["name"],
+        teamNames[gameState[currentState]["team"]]
+      );
     }
     if (gameState[currentState]["type"] == "penaltypointsevent") {
       resetTrack();
