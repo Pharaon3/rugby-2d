@@ -1,4 +1,5 @@
 var socket;
+var inf = 9999999;
 
 var currentState = 0;
 var isLimitedCov = false;
