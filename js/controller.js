@@ -152,6 +152,13 @@ function countdown() {
         setTimer = false;
         setCenterFrame("TV Time Out", homeScore + " - " + awayScore);
       }
+      if (
+        gameState.length &&
+        gameState[currentState]["type"] == "tmoevent"
+      ) {
+        setTimer = false;
+        setCenterFrame("Television Match Official", homeScore + " - " + awayScore);
+      }
       time += timeInterval;
       if (setTimer1) currentTime = time;
       else currentTime = getDataTime;
