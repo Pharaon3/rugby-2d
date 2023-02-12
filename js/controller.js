@@ -1173,6 +1173,8 @@ function setCenterFrame(title, content) {
   document.getElementById("ballState").textContent = "";
   document.getElementById("actionBoard").setAttribute("height", 0);
   document.getElementById("stateBoardLine").setAttribute("stroke-opacity", 0);
+  $("#holder").text("");
+  
   document.getElementById("center_rect").setAttribute("fill-opacity", 0.5);
   center_text = capitalizeWords(title.split(" ")).join(" ");
   document.getElementById("center_text").textContent = center_text;
