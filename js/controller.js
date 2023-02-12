@@ -248,8 +248,8 @@ function tmp() {}
 function bounceBall() {
   if (!setTimer) return;
   tt = t;
-  x_1 = mapX(x, y);
-  y_1 = ((y * y) / hp + y) / 2;
+  x_b = mapX(x2, y2);
+  y_b = mapY(x2, y2);
   document
     .getElementById("ball")
     .setAttribute("x", x_b + w2 - ballRadius / 2 + topLeft);
@@ -376,28 +376,20 @@ function stepInitialize() {
     if (gameState[currentState]["X"] > -1) {
       x2 = ((gameState[currentState]["X"] - 50) * w1) / 50;
       y2 = (gameState[currentState]["Y"] * hp) / 100;
-      // if (gameState[currentState]['type']) {
-      //   x1 = x2
-      //   y1 = y2
-      //   x_1_1 = mapX(x1, y1)
-      //   y_1_1 = mapY(x1, y1)
-      //   x_1_2 = mapX(x2, y2)
-      //   y_1_2 = mapY(x2, y2)
-      //   resetTrack()
-      // } else {
-      x_1_1 = mapX(x1, y1);
-      y_1_1 = mapY(x1, y1);
-      x_1_2 = mapX(x2, y2);
-      y_1_2 = mapY(x2, y2);
-      lineX[3] = lineX[2];
-      lineY[3] = lineY[2];
-      lineX[2] = lineX[1];
-      lineY[2] = lineY[1];
-      lineX[1] = lineX[0];
-      lineY[1] = lineY[0];
-      lineX[0] = x_1_1 + w2 + topLeft;
-      lineY[0] = y_1_1 + topPosition;
-      // }
+      if (x2 != x1 && y2 != y1) {
+        x_1_1 = mapX(x1, y1);
+        y_1_1 = mapY(x1, y1);
+        x_1_2 = mapX(x2, y2);
+        y_1_2 = mapY(x2, y2);
+        lineX[3] = lineX[2];
+        lineY[3] = lineY[2];
+        lineX[2] = lineX[1];
+        lineY[2] = lineY[1];
+        lineX[1] = lineX[0];
+        lineY[1] = lineY[0];
+        lineX[0] = x_1_1 + w2 + topLeft;
+        lineY[0] = y_1_1 + topPosition;
+      }
     } else {
       x2 = x1;
       y2 = y1;
@@ -940,7 +932,7 @@ function showState() {
     }
     if (gameState[currentState]["type"] == "match_ended") {
       setCenterFrame("Match End", homeScore + ":" + awayScore);
-      $('#period').text('Ended')
+      $("#period").text("Ended");
     }
     if (gameState[currentState]["type"] == "periodstart") {
       //
@@ -1174,7 +1166,7 @@ function capitalizeWords(arr) {
 }
 function setCenterFrame(title, content) {
   resetTrack();
-  drawRect();
+  drawTrack();
   document.getElementById("homeStatePolygon").style.fill = "url(#none)";
   document.getElementById("awayStatePolygon").style.fill = "url(#none)";
   document.getElementById("ballState").textContent = "";
