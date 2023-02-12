@@ -351,6 +351,33 @@ function resetTrack() {
   lineY[2] = y_1_1 + topPosition;
   lineY[1] = y_1_1 + topPosition;
   lineY[0] = y_1_1 + topPosition;
+  
+  $("#ballLine1").attr("x1", inf);
+  $("#ballLine1").attr("y1", inf);
+  $("#ballLine1").attr("x2", inf);
+  $("#ballLine1").attr("y2", inf);
+
+  $("#ballLine2").attr("x1", inf);
+  $("#ballLine2").attr("y1", inf);
+  $("#ballLine2").attr("x2", inf);
+  $("#ballLine2").attr("y2", inf);
+
+  $("#ballLine3").attr("x1", inf);
+  $("#ballLine3").attr("y1", inf);
+  $("#ballLine3").attr("x2", inf);
+  $("#ballLine3").attr("y2", inf);
+
+  $("#ballLine4").attr("x1", inf);
+  $("#ballLine4").attr("y1", inf);
+  $("#ballLine4").attr("x2", inf);
+  $("#ballLine4").attr("y2", inf);
+
+  $("#TractDot1").attr("cx", inf);
+  $("#TractDot1").attr("cy", inf);
+  $("#TractDot2").attr("cx", inf);
+  $("#TractDot2").attr("cy", inf);
+  $("#TractDot3").attr("cx", inf);
+  $("#TractDot3").attr("cy", inf);
 }
 function stepInitialize() {
   // For setting time
@@ -1167,14 +1194,13 @@ function capitalizeWords(arr) {
 }
 function setCenterFrame(title, content) {
   resetTrack();
-  drawTrack();
   document.getElementById("homeStatePolygon").style.fill = "url(#none)";
   document.getElementById("awayStatePolygon").style.fill = "url(#none)";
   document.getElementById("ballState").textContent = "";
   document.getElementById("actionBoard").setAttribute("height", 0);
   document.getElementById("stateBoardLine").setAttribute("stroke-opacity", 0);
   $("#holder").text("");
-  
+
   document.getElementById("center_rect").setAttribute("fill-opacity", 0.5);
   center_text = capitalizeWords(title.split(" ")).join(" ");
   document.getElementById("center_text").textContent = center_text;
