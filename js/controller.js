@@ -65,13 +65,16 @@ var isGoal;
 function countdown() {
   var interval = setInterval(function () {
     changeScreenSize();
-    if (isGoal) {
+    if (isLimitedCov) {
+      setCenterFrame("Limited Coverage", homeScore + " - " + awayScore);
+    } else{
+      if (isGoal) {
       isGoal++;
       if (isGoal > 3000 / timeInterval) isGoal = 0;
       setCenterFrame("Goal", teamNames[gameState[currentState]["team"]]);
       if (gameState[currentState]["goaltypeid"] == "29") {
         setCenterFrame(
-          "PENALTY_POINTS",
+          "PENALTY POINTS",
           teamNames[gameState[currentState]["team"]]
         );
       }
@@ -106,6 +109,7 @@ function countdown() {
           "Not Started",
           days + "D " + hour + "H " + minute + "M " + second + "S"
         );
+        if(seconds == 0)setCenterFrame("Match about to start", "")
       }
 
       if (isLimitedCov) {
@@ -209,6 +213,8 @@ function countdown() {
         }
       }
     }
+    }
+    
   }, timeInterval);
 }
 function load() {
@@ -736,7 +742,7 @@ function showState() {
       setCenterFrame("Goal", teamNames[gameState[currentState]["team"]]);
       if (gameState[currentState]["goaltypeid"] == "29") {
         setCenterFrame(
-          "PENALTY_POINTS",
+          "PENALTY POINTS",
           teamNames[gameState[currentState]["team"]]
         );
       }
@@ -1130,7 +1136,7 @@ function displayState() {
       statePositionX = 250;
     } else if ((x2 * 50) / w1 + 50 < 75) {
       document.getElementById("homeState").textContent = "Possession";
-      statePositionX = 440;
+      statePositionX = 400;
     } else {
       document.getElementById("homeState").textContent = "Possession";
       statePositionX = 560;
@@ -1232,6 +1238,11 @@ function setCenterFrame(title, content) {
   document
     .getElementById("center_rect")
     .setAttribute("x", 400 - max(290, titleWidth) / 2);
+  if (content == "") {
+    document.getElementById("center_text").setAttribute("y", 290);
+  } else {
+    document.getElementById("center_text").setAttribute("y", 260);
+  }
 }
 function setSideFrame() {
   // body...
