@@ -239,25 +239,45 @@ function load() {
 
   //getMatchJsonData()
   countdown();
-
-  socket = new WebSocket("wss://gamecast.betdata.pro:8443");
-  socket.onopen = function (e) {
-    //socket.send(JSON.stringify({r:"authenticate", a:{key:"*******"}}));
-    socket.send(JSON.stringify({ r: "subscribe_event", a: { id: eventId } }));
-  };
-
-  socket.onmessage = function (e) {
-    var data = JSON.parse(e.data);
-
-    if (data.r == "event") {
-      // New function added for websocket. Call it.
-      handleEventData(data.d);
-    }
-  };
-  document
-    .getElementById("link")
-    .setAttribute("href", "../rugby-3d/index.html?eventId=" + eventId);
+	connect();
+  document.getElementById("link").setAttribute("href", "../rugby-3d/index.html?eventId=" + eventId);
 }
+
+
+function connect() {
+	const urlParams = new URLSearchParams(window.location.search);
+	const eventId = Number(urlParams.get('eventId'));
+
+	socket=new WebSocket("wss://gamecast.betdata.pro:8443");
+	socket.onopen=function(e) {
+		socketLastResponseTime = Date.now();
+		socket.send(JSON.stringify({r:"subscribe_event", a:{id:eventId}}));
+	};
+
+	socket.onmessage=function(e) {
+		socketLastResponseTime = Date.now();
+		var data = JSON.parse(e.data);
+
+		if (data.r == 'event') {
+			// New function added for websocket. Call it.
+			handleEventData(data.d);
+		}
+	};
+}
+
+setInterval(function() {
+	if (socketLastResponseTime && (Date.now() - socketLastResponseTime) > 8000) {
+		if (socket) {
+			try {
+				socket.close();
+			} catch (err) {};
+		}
+		console.log('Reconnecting...');
+		connect();
+	}
+}, 4000);
+
+
 function tmp() {}
 function bounceBall() {
   if (!setTimer) return;
