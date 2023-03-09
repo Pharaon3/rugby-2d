@@ -4,6 +4,7 @@ var inf = 9999999;
 var currentState = 0;
 var isLimitedCov = false;
 var matchLength, numberOfPeriods;
+var socketLastResponseTime;
 
 var updated_uts1 = 0,
   updated_uts = 0;
